@@ -114,3 +114,54 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const accordian = document.querySelector('.articles');
+
+function articleMaker({ title }){
+  
+  const article = document.createElement('div');
+  const head3 = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+  const openButton = document.createElement('button');
+  // const closeButton = document.createElement('button');
+  
+
+  article.appendChild(head3);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expandButton);
+  expandButton.appendChild(openButton);
+
+  article.classList.add('article');
+  date.classList.add('date');
+  p1.classList.add('p1');
+  p2.classList.add('p2');
+  p3.classList.add('p3');
+  expandButton.classList.add('expand-button');
+  openButton.classList.add('open');
+
+  head3.textContent = title;
+  
+  expandButton.addEventListener('click', (event) => {
+    openButton.classList.toggle('open');
+  });
+
+  return article;
+};
+
+const test = articleMaker({title: 'Professional Software Development in 2019'});
+// debugger;
+
+const articleElement = data.map((data) => {
+  return articleMaker(data);
+});
+
+articleElement.forEach((articleElement) => {
+  accordian.appendChild(articleElement);
+})
